@@ -1,4 +1,5 @@
 const Post = require('../../models/Post')
+const checkAuth = require('../../util/check-auth')
 
 
 module.exports = {
@@ -23,7 +24,10 @@ module.exports = {
         } 
     },
     Mutation: {
-        async createPost(_, {body}) {
+        async createPost(_, {body}, context) {
+            // Check that the user is loged in ans has auth to post
+            const user = checkAuth(context)
+
             const newPost = new Post({
                 body,
                 createdAt: new Date().toISOString()

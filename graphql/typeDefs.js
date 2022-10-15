@@ -11,6 +11,15 @@ module.exports = gql`
         id: ID!
         body: String!
         createdAt: String!
+        username: String!
+    }
+
+    type User {
+        id: ID!
+        email: String!
+        username: String!
+        token: String!
+        createdAt: String!
     }
 
     # The "Query" type is special: it lists all of the available queries that
@@ -21,9 +30,22 @@ module.exports = gql`
         getPost(postId: ID!): Post
     }
 
+    # Usially a register input would also have a confirmPassword and a email
+    input RegisterInput {
+        username: String!
+        password: String!
+        confirmPassword: String!
+        email: String!
+    }
+
     # the mutation type allows to perform actions on the database
     type Mutation {
+        register(registerInput: RegisterInput): User!
+        login(username: String!, password: String!): User!
         createPost(body: String!): Post!
         deletePost(postId: ID!): String!
     }
 `
+
+
+

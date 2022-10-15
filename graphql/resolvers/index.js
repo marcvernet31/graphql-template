@@ -1,4 +1,5 @@
 const postsResolvers = require('./posts')
+const usersResolvers = require('./users')
 
 // Resolvers define the technique for fetching the types defined in the
 // schema.
@@ -9,8 +10,9 @@ const postsResolvers = require('./posts')
 module.exports = {
     Query: {
         ... postsResolvers.Query
-    },
+    }, 
     Mutation: {
-        ... postsResolvers.Mutation
+        ... postsResolvers.Mutation,
+        ... usersResolvers.Mutation
     }
 }

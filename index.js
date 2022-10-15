@@ -10,7 +10,7 @@ const typeDefs = require('./graphql/typeDefs')
 
 
 /*
-QUERIES FOR APOLLO-SERVER
+**** QUERIES ****
 
 Query {
   getPosts{
@@ -28,6 +28,8 @@ Query  {
   }
 }
 
+**** MUTATIONS ****
+
 mutation{
   createPost(body: "This is another test Post"){
     id
@@ -35,6 +37,38 @@ mutation{
     createdAt
   }
 }
+
+mutation {
+  register(registerInput: {
+    username:"tet"
+    password:"1234"
+    confirmPassword:"1234"
+    email:"marc@test.com"
+  }){
+    id 
+    email 
+    token 
+    username 
+    createdAt
+  }
+}
+
+mutation{
+  login(username: "tet", password: "1234"){
+    id
+    username
+    email
+  }
+}
+
+mutation{
+  createPost(body: "Another post with auth") {
+    id
+    body 
+    createdAt
+  }
+}
+
 
 */
 
